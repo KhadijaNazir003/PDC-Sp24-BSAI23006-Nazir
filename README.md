@@ -4,9 +4,7 @@ Khadija Nazir - BSAI23006
 
 Minimal FastAPI mock of the StudySync stack from the assignment, with a
 working **Circuit Breaker** fix for Problem 3 (Fault Tolerance: hanging LLM).
-
-The server stamps `X-Student-ID: BSAI23006` on every HTTP response (assignment
-requirement). See `app/main.py:24` for the middleware.
+See `app/main.py:24` for the middleware.
 
 ## Layout
 
@@ -19,7 +17,7 @@ tests/
   test_circuit_breaker.py   pytest suite proving the fix works
   demo_before_fix.py        BEFORE-state demo for the video
 report/
-  PDC-A2-Report.pdf   Parts 1 + 2 (analysis + design)
+  PDC-Asm2-Report.pdf   Parts 1 + 2 (analysis + design)
 ```
 
 ## Run it
@@ -34,8 +32,6 @@ Open http://localhost:8000/docs for Swagger UI. Verify the header:
 ```powershell
 curl.exe -i -X POST http://localhost:8000/summarize -H "Content-Type: application/json" -d '{\"text\":\"hello world\"}'
 ```
-
-You should see `X-Student-ID: BSAI23006` in the response headers.
 
 ## Run the tests
 
@@ -73,8 +69,6 @@ curl.exe -X POST http://localhost:8000/admin/llm-mode -H "Content-Type: applicat
 for ($i=0; $i -lt 5; $i++) { Measure-Command { curl.exe -s -X POST http://localhost:8000/summarize -H "Content-Type: application/json" -d '{\"text\":\"doc\"}' } | Select-Object TotalSeconds }
 curl.exe http://localhost:8000/health
 ```
-
-You'll see the first ~3 calls take ~2 s each (hitting the per-call timeout)
 and subsequent calls return in milliseconds with `"breaker_state": "open"`.
 
 ## What's implemented for Part 3
