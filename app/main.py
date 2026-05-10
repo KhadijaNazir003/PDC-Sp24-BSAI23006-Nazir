@@ -1,7 +1,6 @@
-"""StudySync — minimal FastAPI mock for PDC Assignment 2.
+"""StudySync — minimal FastAPI mock
 
-Implements the Circuit Breaker fix for Problem 3 (Fault Tolerance).
-Every response carries the X-Student-ID header (assignment requirement).
+Implements the Circuit Breaker fix for Fault Tolerance.
 """
 from __future__ import annotations
 
@@ -72,7 +71,7 @@ async def health():
     return {"status": "ok", "breaker": breaker.snapshot(), "llm_mode": llm.mode.value}
 
 
-# --- demo controls ----------------------------------------------------------
+# demo controls 
 class ModeIn(BaseModel):
     mode: LLMMode
 
